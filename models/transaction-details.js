@@ -1,30 +1,6 @@
 import mongoose from "mongoose";
 const { schema } = mongoose;
 
-const userAccounts = new Schema({
-  userName: { String, required: true },
-  accountName: [{ String, required: true }],
-  accountDesc: String,
-  accountBalance: {
-    lastTwoMonth: Number,
-    lastMonth: Number,
-    thisMonth: Number,
-  },
-});
-
-const transactionCategories = new Schema({
-  tCode: String,
-  tCategory: String,
-});
-
-const userDetails = new Schema({
-  fullName: String,
-  email: String,
-  userName: String,
-  password: String,
-  accountName: [String],
-});
-
 const transactionDetails = new Schema({
   userName: { String, required: true }, // Should be able to get this from the login
   date: { type: Date, default: Date.now }, // To bucket the balance
@@ -36,3 +12,5 @@ const transactionDetails = new Schema({
   recipeintName: String, // Optional, only for data analysis and categorization
   userComments: [{ body: String, date: Date }], // Optional, only for data analysis and categorization
 });
+
+module.exports = transactionDetails;

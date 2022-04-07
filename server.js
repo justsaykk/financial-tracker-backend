@@ -22,6 +22,7 @@ const corsOptions = {
 // CONFIG
 const app = express();
 const PORT = process.env.PORT || 4000;
+const MONGO = process.env.MONGO_URI;
 
 // MIDDLEWARE
 app.use(cors(corsOptions));
@@ -33,7 +34,7 @@ mongoose.connection.on("error", (err) =>
 );
 mongoose.connection.on("disconnected", () => console.log("mongo disconnected"));
 
-mongoose.connect("mongodb://localhost:27017/holidays", {
+mongoose.connect(MONGO, {
   useNewUrlParser: true,
 });
 mongoose.connection.once("open", () => {

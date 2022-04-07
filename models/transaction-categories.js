@@ -5,3 +5,5 @@ const transactionCategories = new Schema({
   tCode: String,
   tCategory: String,
 });
+
+module.exports = transactionCategories;

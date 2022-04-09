@@ -52,7 +52,6 @@ app.get("/logout", () => {
       console.log("You are logged out");
     }
   });
-  res.redirect("/login");
 });
 
 app.get("/dashboard", (req, res) => {

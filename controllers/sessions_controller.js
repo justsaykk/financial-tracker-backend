@@ -39,7 +39,7 @@ sessions.post("/", async (req, res) => {
 
 sessions.delete("/", (req, res) => {
   req.session.destroy(() => {
-    res.redirect("/");
+    // res.redirect("/");
   });
 });
 

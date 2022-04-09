@@ -10,9 +10,14 @@ users.post("/register", async (req, res) => {
     bcrypt.genSaltSync(10)
   );
   try {
-    const createdUser = await userDetails.create(req.body);
-    console.log("created user is: ", createdUser);
-    res.redirect("/");
+    const isTaken = await userDetails.find({ email: req.body.email });
+    if (isTaken) {
+      console.log("Email is taken");
+    } else {
+      const createdUser = await userDetails.create(req.body);
+      console.log("created user is: ", createdUser);
+      res.redirect("/");
+    }
   } catch (error) {
     console.log(error);
   }

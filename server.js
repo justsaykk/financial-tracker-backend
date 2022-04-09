@@ -24,7 +24,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use("/", userController);
+app.use("/new", userController);
 app.use("/", sessionsController);
 
 // Server Connection

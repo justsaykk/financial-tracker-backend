@@ -25,6 +25,7 @@ app.use(
   })
 );
 app.use("/", userController);
+app.use("/", sessionsController);
 
 // Server Connection
 mongoose.connection.on("error", (err) =>
@@ -52,6 +53,10 @@ app.get("/logout", () => {
     }
   });
   res.redirect("/login");
+});
+
+app.get("/dashboard", (req, res) => {
+  res.send("This is the dashboard page");
 });
 
 // Listener

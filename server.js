@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 // const cors = require("cors");
 const mongoose = require("mongoose");
+const userDetails = require("./models/user-details.js");
 
 // const whitelist = [
 //   "http://localhost:3000",
@@ -46,9 +47,13 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.post("/moneybank/register", (req, res) => {
-  console.log("Create route accessed!");
-  res.send("This route works");
+app.post("/", async (req, res) => {
+  try {
+    const createdUser = await userDetails.create(req.body);
+    res.status(200).send(createdUser);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 // Listener

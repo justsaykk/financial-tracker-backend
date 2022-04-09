@@ -18,7 +18,7 @@ const User = require("../models/user-details");
 // unsuccessful login
 
 // Step 1 Look for the username
-sessions.post("/login", async (req, res) => {
+sessions.post("/", async (req, res) => {
   try {
     const foundUser = await User.findOne({ name: req.body.username });
     if (!foundUser) {
@@ -26,6 +26,7 @@ sessions.post("/login", async (req, res) => {
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser;
+        console.log(foundUser, " is logged in!");
         res.redirect("/dashboard");
       } else {
         res.send('<a href="/">password does not match</a>');

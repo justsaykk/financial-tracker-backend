@@ -7,7 +7,6 @@ const userDetails = require("./models/user-details.js");
 
 const whitelist = [
   "http://localhost:3000",
-  "http://localhost:3000/moneybank/register",
   "https://moneybankbackend.herokuapp.com/",
 ];
 

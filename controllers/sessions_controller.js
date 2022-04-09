@@ -3,12 +3,12 @@ const express = require("express");
 const sessions = express.Router();
 const User = require("../models/user-details");
 
-sessions.get("/new", (req, res) => {
-  res.render("sessions/new.ejs", { currentUser: req.session.currentUser });
-});
+// sessions.get("/new", (req, res) => {
+//   res.render("sessions/new.ejs", { currentUser: req.session.currentUser });
+// });
 
 // on sessions form submit (log in)
-sessions.post("/", (req, res) => {
+sessions.post("/", async (req, res) => {
   // username is found and password matches
   // successful log in
 
@@ -28,12 +28,12 @@ sessions.post("/", (req, res) => {
         req.session.currentUser = foundUser;
         res.redirect("/");
       } else {
-        res.send( '<a href="/">password does not match</a>')
+        res.send('<a href="/">password does not match</a>');
       }
     }
   } catch (error) {
     console.log(error);
-  };
+  }
 });
 
 sessions.delete("/", (req, res) => {

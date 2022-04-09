@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const session = require("express-session");
 const userDetails = require("./models/user-details.js");
 
 // CONFIG
@@ -12,6 +13,13 @@ const MONGO = process.env.MONGO_URI;
 
 // MIDDLEWARE
 app.use(cors());
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(express.json());
 
 // Server Connection
@@ -32,8 +40,18 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.get("/register", (req, res) => {
-  res.send("You are at moneybank/register");
+app.get("/logout", () => {
+  //any route will work
+  req.session.destroy((err) => {
+    if (err) {
+      //do something if destroying the session fails
+      console.log("unable to log out");
+    } else {
+      //do something if destroying the session succeeds
+      console.log("You are logged out");
+    }
+  });
+  res.redirect("/");
 });
 
 app.post("/register", async (req, res) => {

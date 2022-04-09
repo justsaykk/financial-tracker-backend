@@ -47,10 +47,10 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.post("/", async (req, res) => {
+app.post("/moneybank/register", async (req, res) => {
   try {
     const createdUser = await userDetails.create(req.body);
-    res.status(200).send(createdUser);
+    res.send(createdUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

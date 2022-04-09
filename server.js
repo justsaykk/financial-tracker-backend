@@ -24,7 +24,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use("/register", userController);
+app.use("/", userController);
 
 // Server Connection
 mongoose.connection.on("error", (err) =>

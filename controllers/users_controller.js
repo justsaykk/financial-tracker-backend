@@ -11,7 +11,7 @@ const userDetails = require("../models/user-details");
 //   res.send("This is the new user registration page");
 // });
 
-users.post("/new", async (req, res) => {
+users.post("/register", async (req, res) => {
   //overwrite the user password with the hashed password, then pass that in to our database
   req.body.password = bcrypt.hashSync(
     req.body.password,

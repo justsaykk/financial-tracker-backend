@@ -7,6 +7,7 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const userDetails = require("./models/user-details.js");
 const userController = require("./controllers/users_controller");
+const sessionsController = require("./controllers/sessions_controller");
 
 // CONFIG
 const app = express();

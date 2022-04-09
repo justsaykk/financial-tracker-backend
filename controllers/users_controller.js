@@ -1,20 +1,24 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const users = express.Router();
-const User = require("../models/user-details");
+const userDetails = require("../models/user-details");
 
 // users.get("/new", (req, res) => {
 //   res.render("users/new.ejs");
 // });
 
-users.post("/", async (req, res) => {
+// users.get("/new", (req, res) => {
+//   res.send("This is the new user registration page");
+// });
+
+users.post("/new", async (req, res) => {
   //overwrite the user password with the hashed password, then pass that in to our database
   req.body.password = bcrypt.hashSync(
     req.body.password,
     bcrypt.genSaltSync(10)
   );
   try {
-    const createdUser = await User.create(req.body);
+    const createdUser = await userDetails.create(req.body);
     console.log("created user is: ", createdUser);
     res.redirect("/");
   } catch (error) {

@@ -8,17 +8,17 @@ const User = require("../models/user-details");
 // });
 
 // on sessions form submit (log in)
-sessions.post("/", async (req, res) => {
-  // username is found and password matches
-  // successful log in
+// username is found and password matches
+// successful log in
 
-  // username is not found - who cares about password if you don't have a username that is found?
-  // unsuccessful login
+// username is not found - who cares about password if you don't have a username that is found?
+// unsuccessful login
 
-  // username found but password doesn't match
-  // unsuccessful login
+// username found but password doesn't match
+// unsuccessful login
 
-  // Step 1 Look for the username
+// Step 1 Look for the username
+sessions.post("/login", async (req, res) => {
   try {
     const foundUser = await User.findOne({ name: req.body.username });
     if (!foundUser) {

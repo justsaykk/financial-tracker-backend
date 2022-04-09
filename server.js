@@ -16,6 +16,7 @@ const MONGO = process.env.MONGO_URI;
 
 // MIDDLEWARE
 app.use(cors());
+app.use(express.json());
 app.use(
   session({
     secret: process.env.SECRET,
@@ -23,8 +24,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use("/users", userController);
-app.use(express.json());
+app.use("/register", userController);
 
 // Server Connection
 mongoose.connection.on("error", (err) =>
@@ -40,10 +40,6 @@ mongoose.connection.once("open", () => {
 });
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
-
 app.get("/logout", () => {
   //any route will work
   req.session.destroy((err) => {
@@ -55,16 +51,7 @@ app.get("/logout", () => {
       console.log("You are logged out");
     }
   });
-  res.redirect("/");
-});
-
-app.post("/register", async (req, res) => {
-  try {
-    const createdUser = await userDetails.create(req.body);
-    res.send(createdUser);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+  res.redirect("/login");
 });
 
 // Listener

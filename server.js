@@ -32,11 +32,11 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.get("/moneybank/register", (req, res) => {
+app.get("/register", (req, res) => {
   res.send("You are at moneybank/register");
 });
 
-app.post("/moneybank/register", async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
     const createdUser = await userDetails.create(req.body);
     res.send(createdUser);

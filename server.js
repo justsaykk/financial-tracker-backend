@@ -15,7 +15,11 @@ const PORT = process.env.PORT || 4000;
 const MONGO = process.env.MONGO_URI;
 
 // MIDDLEWARE
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://moneybank.vercel.app/",
+  })
+);
 app.use(express.json());
 app.use(
   session({

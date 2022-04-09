@@ -4,7 +4,9 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const bcrypt = require("bcrypt");
 const userDetails = require("./models/user-details.js");
+const userController = require("./controllers/users_controller");
 
 // CONFIG
 const app = express();
@@ -20,6 +22,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use("/users", userController);
 app.use(express.json());
 
 // Server Connection

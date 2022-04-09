@@ -21,6 +21,7 @@ const User = require("../models/user-details");
 sessions.post("/", async (req, res) => {
   try {
     const foundUser = await User.findOne({ name: req.body.username });
+    console.log("I've found this user: ", foundUser);
     if (!foundUser) {
       res.send('<a hred="/">Sorry, no user found </a>');
     } else {

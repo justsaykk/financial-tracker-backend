@@ -14,20 +14,20 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const MONGO = process.env.MONGO_URI;
 
-const whitelist = ["https://moneybank.vercel.app"];
+// const whitelist = ["https://moneybank.vercel.app"];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 
 // MIDDLEWARE
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(
   session({

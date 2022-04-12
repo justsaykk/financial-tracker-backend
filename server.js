@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const userDetails = require("./models/user-details.js");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
@@ -41,19 +41,6 @@ mongoose.connection.once("open", () => {
 });
 
 // Routes
-app.get("/logout", () => {
-  //any route will work
-  req.session.destroy((err) => {
-    if (err) {
-      //do something if destroying the session fails
-      console.log("unable to log out");
-    } else {
-      //do something if destroying the session succeeds
-      console.log("You are logged out");
-    }
-  });
-});
-
 app.get("/dashboard", (req, res) => {
   res.send("This is the dashboard page");
 });

@@ -15,8 +15,8 @@ const PORT = process.env.PORT || 4000;
 const MONGO = process.env.MONGO_URI;
 
 // MIDDLEWARE
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(
   session({
     secret: process.env.SECRET,

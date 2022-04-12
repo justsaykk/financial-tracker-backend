@@ -10,6 +10,7 @@ users.get("/register", (req, res) => {
 
 users.post("/register", async (req, res) => {
   const userInputPassword = req.body.password;
+  console.log("req.body is", req.body);
   const hash = bcrypt.hashSync(userInputPassword, saltRounds);
   req.body.password = hash;
   console.log("req.body is", req.body);

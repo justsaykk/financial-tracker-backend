@@ -4,7 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require("express-session");
-// const bcrypt = require("bcrypt");
 const userDetails = require("./models/user-details.js");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
@@ -13,18 +12,6 @@ const sessionsController = require("./controllers/sessions_controller");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const MONGO = process.env.MONGO_URI;
-
-// const whitelist = ["https://moneybank.vercel.app"];
-
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
 
 // MIDDLEWARE
 app.use(cors());

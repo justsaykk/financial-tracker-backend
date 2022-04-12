@@ -9,8 +9,10 @@ users.get("/register", (req, res) => {
 });
 
 users.post("/register", async (req, res) => {
-  const hash = bcrypt.hashSync(req.body.password, saltRounds);
+  const userInputPassword = req.body.password;
+  const hash = bcrypt.hashSync(userInputPassword, saltRounds);
   req.body.password = hash;
+  console.log("req.body is", req.body);
   try {
     const createdUser = await UserDetails.create(req.body);
   } catch (error) {

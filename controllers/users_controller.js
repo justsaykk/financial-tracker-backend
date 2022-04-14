@@ -9,9 +9,9 @@ users.post("/register", async (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, saltRounds);
   try {
     const createdUser = await UserDetails.create(req.body);
+    res.status(200).send(createdUser);
   } catch (error) {
-    console.log(error);
-    res.send("Error");
+    res.status(400).json({ error: error.message });
   }
 });
 

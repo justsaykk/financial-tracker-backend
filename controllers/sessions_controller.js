@@ -12,7 +12,8 @@ sessions.post("/", async (req, res) => {
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser;
-        console.log(foundUser, " is logged in!");
+        console.log(foundUser.email, " is logged in!");
+        res.status(200).send(foundUser.email + " is logged in!");
       } else {
         res.send("Wrong Password");
       }

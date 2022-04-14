@@ -5,11 +5,10 @@ const UserDetails = require("../models/user-details");
 const saltRounds = 10;
 
 users.post("/register", async (req, res) => {
-  // console.log("req.body is ", req.body);
   req.body.password = bcrypt.hashSync(req.body.password, saltRounds);
   try {
     const createdUser = await UserDetails.create(req.body);
-    res.status(200).send(createdUser);
+    res.status(200).send("created user: " + createdUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

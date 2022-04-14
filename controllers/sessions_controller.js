@@ -5,7 +5,7 @@ const User = require("../models/user-details");
 
 sessions.post("/", async (req, res) => {
   try {
-    const foundUser = await User.findOne({ name: req.body.username });
+    const foundUser = await User.findOne({ email: req.body.email });
     console.log("I've found this user: ", foundUser);
     if (!foundUser) {
       res.send("No such user");

@@ -23,7 +23,7 @@ app.use(
   })
 );
 app.use("/new", userController);
-app.use("/", sessionsController);
+app.use("/dashboard", sessionsController);
 
 // Server Connection
 mongoose.connection.on("error", (err) =>

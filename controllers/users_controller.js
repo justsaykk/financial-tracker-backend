@@ -9,6 +9,7 @@ users.post("/register", async (req, res) => {
   try {
     const createdUser = await UserDetails.create(req.body);
     res.status(200).send("created user: " + createdUser);
+    console.log();
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

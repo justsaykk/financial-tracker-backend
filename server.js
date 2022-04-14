@@ -4,7 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const userDetails = require("./models/user-details.js");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
 

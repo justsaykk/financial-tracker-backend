@@ -4,16 +4,8 @@ const users = express.Router();
 const UserDetails = require("../models/user-details");
 const saltRounds = 10;
 
-users.get("/register", (req, res) => {
-  res.send("This is for troubleshooting register page");
-});
-
 users.post("/register", async (req, res) => {
-  const userInputPassword = req.body.password;
-  console.log("req.body is", req.body);
-  const hash = bcrypt.hashSync(userInputPassword, saltRounds);
-  req.body.password = hash;
-  console.log("req.body is", req.body);
+  req.body.password = bcrypt.hashSync(req.body.password, saltRounds);
   try {
     const createdUser = await UserDetails.create(req.body);
   } catch (error) {

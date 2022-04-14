@@ -3,14 +3,9 @@ const { Schema } = mongoose;
 
 const userAccounts = new Schema([
   {
-    userName: { String, required: true },
-    accountName: [{ String, required: true }],
-    accountDesc: String,
-    accountBalance: {
-      lastTwoMonth: Number,
-      lastMonth: Number,
-      thisMonth: Number,
-    },
+    accountName: { String, required: true },
+    accountDescription: String,
+    accountBalance: { type: Number, required: true },
   },
 ]);
 

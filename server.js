@@ -7,6 +7,7 @@ const session = require("express-session");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
 const UserDetails = require("./models/user-details");
+const bcrypt = require("bcrypt");
 
 // CONFIG
 const app = express();
@@ -53,7 +54,7 @@ const userSeeds = [
   {
     name: "user01",
     email: "user01@user.com",
-    password: "123",
+    password: bcrypt.hashSync("123", 10),
     accountName: "user01Account",
     accountType: "debit",
     accountDescription: "user01AccountDesc",
@@ -62,7 +63,7 @@ const userSeeds = [
   {
     name: "user02",
     email: "user02@user.com",
-    password: "123",
+    password: bcrypt.hashSync("123", 10),
     accountName: "user02Account",
     accountType: "debit",
     accountDescription: "user02AccountDesc",
@@ -71,7 +72,7 @@ const userSeeds = [
   {
     name: "user03",
     email: "user03@user.com",
-    password: "123",
+    password: bcrypt.hashSync("123", 10),
     accountName: "user03Account",
     accountType: "debit",
     accountDescription: "user03AccountDesc",

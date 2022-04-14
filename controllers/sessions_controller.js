@@ -1,12 +1,12 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const sessions = express.Router();
-const User = require("../models/user-details");
+const UserDetails = require("../models/user-details");
 
 sessions.post("/", async (req, res) => {
   try {
-    const foundUser = await User.findOne({ email: req.body.email });
-    console.log("I've found this user: ", foundUser);
+    const foundUser = await UserDetails.findOne({ email: req.body.email });
+    console.log("I've found this user: ", foundUser.email);
     if (!foundUser) {
       res.send("No such user");
     } else {

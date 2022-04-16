@@ -10,7 +10,7 @@ transactions.get("/", (req, res) => {
 transactions.post("/new", async (req, res) => {
   try {
     const newTransaction = await TransactionDetails.create(req.body);
-    res.status(200).send("Transaction successfully saved!");
+    res.status(200).send({ msg: "Transaction successfully saved!" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

@@ -5,6 +5,7 @@ const TransactionDetails = require("../models/transactionDetailSchema");
 const UserDetails = require("../models/userDetailSchema");
 
 transactions.get("/", async (req, res) => {
+  console.log("foundUser is", req.session.foundUser);
   const findUser = await UserDetails.find({ email: "mary@gmail.com" });
   // res.send(findUser)
   res.status(200).send(findUser.accountName);

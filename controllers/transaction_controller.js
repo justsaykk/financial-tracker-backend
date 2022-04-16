@@ -5,9 +5,7 @@ const TransactionDetails = require("../models/transactionDetailSchema");
 const UserDetails = require("../models/userDetailSchema");
 
 transactions.get("/", async (req, res) => {
-  const findUser = await UserDetails.find(
-    { email: "mary@gmail.com" }
-  )
+  const findUser = await UserDetails.find({ email: "mary@gmail.com" });
   // res.send(findUser)
   res.status(200).send(findUser.accountName);
 });

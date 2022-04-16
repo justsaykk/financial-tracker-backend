@@ -2,9 +2,14 @@
 const express = require("express");
 const transactions = express.Router();
 const TransactionDetails = require("../models/transactionDetailSchema");
+const UserDetails = require("../models/userDetailSchema");
 
-transactions.get("/", (req, res) => {
-  res.status(200).send([{ account: "Account1" }]);
+transactions.get("/", async (req, res) => {
+  const findUser = await UserDetails.find(
+    { email: "mary@gmail.com" }
+  )
+  // res.send(findUser)
+  res.status(200).send(findUser.accountName);
 });
 
 transactions.post("/new", async (req, res) => {

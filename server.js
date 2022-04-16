@@ -15,7 +15,13 @@ const PORT = process.env.PORT || 4000;
 const MONGO = process.env.MONGO_URI;
 
 // MIDDLEWARE
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
 app.use(express.json());
 app.use(
   session({

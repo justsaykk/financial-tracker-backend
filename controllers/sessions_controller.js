@@ -8,7 +8,7 @@ const { StatusCodes, getReasonPhrase } = codes;
 
 const isAuth = (req, res, next) => {
   if (req.session.isLoggedIn) {
-    next();
+    return next();
   } else {
     res
       .status(StatusCodes.UNAUTHORIZED)
@@ -28,6 +28,7 @@ sessions.post("/", async (req, res) => {
       res.send("No such user");
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+        req.session.isLoggedIn = true;
         req.session.currentUser = foundUser;
         console.log(foundUser.email, " is logged in!");
         res.status(200).send(foundUser.email + " is logged in!");

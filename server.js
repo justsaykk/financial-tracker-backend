@@ -18,6 +18,7 @@ const MONGO = process.env.MONGO_URI;
 app.use(
   cors({
     credentials: true,
+    // origin: true,
     origin: [
       "http://localhost:3000",
       "http://localhost:2000",

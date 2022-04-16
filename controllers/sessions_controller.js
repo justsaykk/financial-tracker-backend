@@ -16,21 +16,21 @@ const isAuth = (req, res, next) => {
 };
 
 sessions.get("/secret", isAuth, (req, res) => {
-  res.send("You are logged in");
+  res.send({ msg: "You are logged in" });
 });
 
 sessions.post("/", async (req, res) => {
   try {
     const foundUser = await UserDetails.findOne({ email: req.body.email });
     if (!foundUser) {
-      res.send("No such user");
+      res.send({ msg: "No such user" });
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser.email;
         req.session.isLoggedIn = true;
-        res.status(200).send(foundUser.email + " is logged in!");
+        res.status(200).send({ msg: `${foundUser.email} is logged in!` });
       } else {
-        res.send("Wrong Password");
+        res.send({ msg: "Wrong Password" });
       }
     }
   } catch (error) {

@@ -16,7 +16,7 @@ const isAuth = (req, res, next) => {
 };
 
 sessions.get("/secret", isAuth, (req, res) => {
-  res.send({ msg: "You are logged in" });
+  res.send({ msg: "You are in the secret path" });
 });
 
 sessions.post("/", async (req, res) => {

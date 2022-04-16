@@ -18,16 +18,25 @@ const MONGO = process.env.MONGO_URI;
 app.use(
   cors({
     credentials: true,
-    origin: true,
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:2000",
+      "https://moneybank.vercel.app",
+    ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 app.use(express.json());
+app.set("trust proxy", 1);
 app.use(
   session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production",
+    },
   })
 );
 app.use("/new", userController);

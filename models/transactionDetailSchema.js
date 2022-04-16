@@ -14,7 +14,7 @@ const transactionDetails = new Schema({
   // Optional, only for data analysis and categorization
   tCategory: String,
   recipeintName: String,
-  tDetails: [{ body: String, date: Date }],
+  tDetails: String,
 });
 
 const TransactionDetails = mongoose.model(

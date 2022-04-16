@@ -3,13 +3,18 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const transactionDetails = new Schema({
-  email: { type: String, required: true }, // Should be able to get this from the login
-  date: { type: Date, default: Date.now }, // To bucket the balance
-  accountName: String, // Important to track money flow
-  amount: { type: Number, required: true }, // If user choose debit, postive. Else negative
-  tCategory: String, // Optional, only for data analysis and categorization
-  recipeintName: String, // Optional, only for data analysis and categorization
-  tDetails: [{ body: String, date: Date }], // Optional, only for data analysis and categorization
+  // Should be able to get this from the login
+  email: { type: String, required: true },
+  // To bucket the balance
+  date: { type: Date, default: Date.now },
+  // Important to track money flow
+  accountName: String,
+  // If user choose debit, postive. Else negative
+  amount: { type: Number, required: true },
+  // Optional, only for data analysis and categorization
+  tCategory: String,
+  recipeintName: String,
+  tDetails: [{ body: String, date: Date }],
 });
 
 const TransactionDetails = mongoose.model(

@@ -4,7 +4,7 @@ const transactions = express.Router();
 const TransactionDetails = require("../models/transactionDetailSchema");
 
 transactions.get("/", (req, res) => {
-  res.status(200).send({ category: "Payments" });
+  res.status(200).send([{ account: "Account1" }]);
 });
 
 transactions.post("/new", async (req, res) => {

@@ -2,6 +2,23 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const sessions = express.Router();
 const UserDetails = require("../models/user-details");
+const codes = require("http-status-codes");
+const { append } = require("express/lib/response");
+const { StatusCodes, getReasonPhrase } = codes;
+
+const isAuth = (req, res, next) => {
+  if (req.session.isLoggedIn) {
+    next();
+  } else {
+    res
+      .status(StatusCodes.UNAUTHORIZED)
+      .send({ error: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
+  }
+};
+
+sessions.get("/secret", isAuth, (req, res) => {
+  res.json({ secret: "Logged in" });
+});
 
 sessions.post("/", async (req, res) => {
   try {

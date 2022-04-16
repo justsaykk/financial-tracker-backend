@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
-const seedController = require("./controllers/seed");
+const seedController = require("./controllers/seed_controller");
+const transactions = require("./controllers/transaction_controller");
 
 // CONFIG
 const app = express();
@@ -32,6 +33,7 @@ app.use(
 app.use("/new", userController);
 app.use("/dashboard", sessionsController);
 app.use("/seed", seedController);
+app.use("/transactions", transactions);
 
 // Server Connection
 mongoose.connection.on("error", (err) =>

@@ -1,7 +1,8 @@
+// Dependencies
 const bcrypt = require("bcrypt");
 const express = require("express");
 const users = express.Router();
-const UserDetails = require("../models/user-details");
+const UserDetails = require("../models/userDetailSchema");
 const saltRounds = 10;
 
 users.post("/register", async (req, res) => {
@@ -9,7 +10,6 @@ users.post("/register", async (req, res) => {
   try {
     const createdUser = await UserDetails.create(req.body);
     res.status(200).send(createdUser);
-    console.log();
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

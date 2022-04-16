@@ -1,4 +1,4 @@
-const UserDetails = require("../models/user-details");
+const UserDetails = require("../models/userDetailSchema");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const seed = express.Router();

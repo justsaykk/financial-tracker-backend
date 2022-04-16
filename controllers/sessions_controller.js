@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const sessions = express.Router();
-const UserDetails = require("../models/user-details");
+const UserDetails = require("../models/userDetailSchema");
 const codes = require("http-status-codes");
 const { StatusCodes, getReasonPhrase } = codes;
 

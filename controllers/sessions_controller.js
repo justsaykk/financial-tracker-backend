@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const sessions = express.Router();
-const UserDetails = require("../models/userDetailSchema");
+const userDetailSchema = require("../models/userDetailSchema");
 const codes = require("http-status-codes");
 const { StatusCodes, getReasonPhrase } = codes;
 
@@ -21,7 +21,7 @@ sessions.get("/secret", isAuth, (req, res) => {
 
 sessions.post("/", async (req, res) => {
   try {
-    const foundUser = await UserDetails.findOne({ email: req.body.email });
+    const foundUser = await userDetailSchema.findOne({ email: req.body.email });
     if (!foundUser) {
       res.send({ msg: "No such user" });
     } else {

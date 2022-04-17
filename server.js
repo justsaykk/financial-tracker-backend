@@ -6,8 +6,11 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
-const seedController = require("./controllers/seed_controller");
 const transactions = require("./controllers/transaction_controller");
+
+// Seed Controllers
+const seedUsers_Controller = require("./controllers/seedUsers_controller");
+const seedTransaction_Controller = require("./controllers/seedTransaction_controller");
 
 // CONFIG
 const app = express();
@@ -18,10 +21,10 @@ const MONGO = process.env.MONGO_URI;
 app.use(
   cors({
     credentials: true,
-    // origin: true,
     origin: [
       "http://localhost:3000",
       "http://localhost:2000",
+      "http://localhost:4000",
       "https://moneybank.vercel.app",
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -42,12 +45,15 @@ app.use(
 );
 app.use("/new", userController);
 app.use("/dashboard", sessionsController);
-app.use("/seed", seedController);
 app.use("/transactions", transactions);
+
+// Seed Middleware
+app.use("/seedusers", seedUsers_Controller);
+app.use("/seedtransactions", seedTransaction_Controller);
 
 // Server Connection
 mongoose.connection.on("error", (err) =>
-  console.log(err.message + " is Mongod not running?")
+  console.log(err.message + " Mongod is not running?")
 );
 mongoose.connection.on("disconnected", () => console.log("mongo disconnected"));
 
@@ -56,11 +62,6 @@ mongoose.connect(MONGO, {
 });
 mongoose.connection.once("open", () => {
   console.log("connected to mongoose...");
-});
-
-// Routes
-app.get("/dashboard", (req, res) => {
-  res.send("This is the dashboard page");
 });
 
 // Listener

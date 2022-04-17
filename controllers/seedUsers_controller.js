@@ -1,7 +1,7 @@
 const UserDetails = require("../models/userDetailSchema");
 const express = require("express");
 const bcrypt = require("bcrypt");
-const seed = express.Router();
+const seedUsers = express.Router();
 
 const userSeeds = [
   {
@@ -33,7 +33,7 @@ const userSeeds = [
   },
 ];
 
-seed.get("/seed", async (req, res) => {
+seedUsers.get("/seed", async (req, res) => {
   try {
     await UserDetails.deleteMany({});
     await UserDetails.insertMany(userSeeds);
@@ -43,4 +43,4 @@ seed.get("/seed", async (req, res) => {
   }
 });
 
-module.exports = seed;
+module.exports = seedUsers;

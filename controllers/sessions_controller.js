@@ -23,12 +23,12 @@ sessions.post("/", async (req, res) => {
   try {
     const foundUser = await userDetailSchema.findOne({ email: req.body.email });
     if (!foundUser) {
-      res.send({ msg: "No such user" });
+      res.send({ msg: "user not found" });
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-        req.session.currentUser = foundUser.email;
+        req.session.currentUser = foundUser;
         req.session.isLoggedIn = true;
-        res.status(200).send({ msg: `${foundUser.email} is logged in!` });
+        res.status(200).send({ msg: `${foundUser} is logged in!` });
       } else {
         res.send({ msg: "Wrong Password" });
       }

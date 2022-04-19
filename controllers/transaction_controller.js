@@ -8,17 +8,13 @@ const isAuth = (req, res, next) => {
   if (req.session.isLoggedIn) {
     return next();
   } else {
-    res
-      .status(StatusCodes.UNAUTHORIZED)
-      .send({ error: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
+    res.status(401).send({ error: "unauthorized" });
   }
 };
 
 transactions.get("/", isAuth, async (req, res) => {
   try {
-    const currentUser = req.session.currentUser;
-    const findUser = await UserDetails.find(currentUser.email);
-    res.status(200).send(findUser.accountName);
+    res.status(200).send(req.session.currentUser);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

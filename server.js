@@ -22,9 +22,9 @@ app.use(
   cors({
     credentials: true,
     origin: [
-      "https://localhost:3000",
-      "https://localhost:2000",
-      "https://localhost:4000",
+      "http://localhost:3000",
+      "http://localhost:2000",
+      "http://localhost:4000",
       "https://moneybank.vercel.app",
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",

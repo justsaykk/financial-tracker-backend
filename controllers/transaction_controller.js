@@ -2,7 +2,6 @@
 const express = require("express");
 const transactions = express.Router();
 const TransactionDetails = require("../models/transactionDetailSchema");
-const UserDetails = require("../models/userDetailSchema");
 
 const isAuth = (req, res, next) => {
   if (req.session.isLoggedIn) {
@@ -21,18 +20,20 @@ transactions.get("/", isAuth, async (req, res) => {
 });
 
 transactions.post("/new", isAuth, async (req, res) => {
+  const currentUser = req.session.currentUser;
+  const body = req.body;
   try {
-    if (req.body.account !== req.session.currentUser.accountName) {
-      req.body.amount = req.body.amount * -1;
+    if (body.account !== currentUser.accountName) {
+      body.amount = body.amount * -1;
     }
-
+    console.log(currentUser.email);
     const newTransaction = await TransactionDetails.create({
-      email: req.session.currentUser,
-      date: req.body.date,
-      accountName: req.body.account,
-      amount: req.body.amount,
-      reciepientName: req.body.recipient,
-      tDetails: req.body.transactionDetails,
+      email: currentUser.email,
+      date: body.date,
+      accountName: body.account,
+      amount: body.amount,
+      reciepientName: body.recipient,
+      tDetails: body.transaction,
     });
     res
       .status(200)

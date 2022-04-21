@@ -8,7 +8,7 @@ const transactionDetails = new Schema({
   accountName: { type: String, default: "N/A" },
   amount: { type: Number, required: true },
   tCategory: { type: String, default: "N/A" },
-  recipeintName: { type: String, default: "N/A" },
+  recipientName: { type: String, default: "N/A" },
   tDetails: { type: String, default: "N/A" },
 });
 

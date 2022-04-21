@@ -7,7 +7,6 @@ const session = require("express-session");
 const userController = require("./controllers/users_controller");
 const sessionsController = require("./controllers/sessions_controller");
 const transactions = require("./controllers/transaction_controller");
-
 // Seed Controllers
 const seedUsers_Controller = require("./controllers/seedUsers_controller");
 const seedTransaction_Controller = require("./controllers/seedTransaction_controller");

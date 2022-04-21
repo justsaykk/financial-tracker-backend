@@ -1,7 +1,11 @@
 // Dependencies
 const express = require("express");
 const transactions = express.Router();
+const methodOverride = require("method-override");
 const TransactionDetails = require("../models/transactionDetailSchema");
+
+//Middleware
+transactions.use(methodOverride("_method"));
 
 const isAuth = (req, res, next) => {
   if (req.session.isLoggedIn) {
@@ -12,14 +16,18 @@ const isAuth = (req, res, next) => {
 };
 
 transactions.get("/", isAuth, async (req, res) => {
+  const currentUser = req.session.currentUser;
   try {
-    res.status(200).send(req.session.currentUser);
+    const transactionData = await TransactionDetails.find({
+      email: currentUser.email,
+    });
+    res.status(200).send(transactionData);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 });
 
-transactions.post("/new", isAuth, async (req, res) => {
+transactions.post("/", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   const body = req.body;
   try {
@@ -42,7 +50,17 @@ transactions.post("/new", isAuth, async (req, res) => {
         { details: newTransaction },
       ]);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).send({ error: error.message });
+  }
+});
+
+transactions.delete("/:id", isAuth, async (req, res) => {
+  try {
+    const removeTransaction = await TransactionDetails.findByIdAndRemove(
+      req.params.id
+    );
+  } catch (err) {
+    res.status(400).send({ error: err.message });
   }
 });
 

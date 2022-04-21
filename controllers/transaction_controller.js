@@ -2,7 +2,7 @@
 const express = require("express");
 const transactions = express.Router();
 const methodOverride = require("method-override");
-const TransactionDetails = require("../models/transactionDetailSchema");
+const TransactionDetails = require("../models/transaction_detail_schema");
 
 //Middleware
 transactions.use(methodOverride("_method"));

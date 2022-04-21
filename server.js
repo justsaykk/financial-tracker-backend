@@ -4,12 +4,13 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const userController = require("./controllers/users_controller");
+const userController = require("./controllers/users_creation_controller");
 const sessionsController = require("./controllers/sessions_controller");
 const transactions = require("./controllers/transaction_controller");
+const user = require("./controllers/users_controller");
 // Seed Controllers
-const seedUsers_Controller = require("./controllers/seedUsers_controller");
-const seedTransaction_Controller = require("./controllers/seedTransaction_controller");
+const seedUsers_Controller = require("./controllers/seed_users_controller");
+const seedTransaction_Controller = require("./controllers/seed_transaction_controller");
 
 // CONFIG
 const app = express();
@@ -43,6 +44,7 @@ app.use(
   })
 );
 app.use("/new", userController);
+app.use("/user", user);
 app.use("/dashboard", sessionsController);
 app.use("/transactions", transactions);
 

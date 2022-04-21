@@ -1,4 +1,4 @@
-const TransactionDetails = require("../models/transactionDetailSchema");
+const TransactionDetails = require("../models/transaction_detail_schema");
 const express = require("express");
 const seedTransaction = express.Router();
 

@@ -9,6 +9,7 @@ const transactionDetails = new Schema({
   amount: { type: Number, required: true },
   tCategory: { type: String, default: "N/A" },
   recipientName: { type: String, default: "N/A" },
+  sender: { type: String, default: "N/A" },
   tDetails: { type: String, default: "N/A" },
 });
 

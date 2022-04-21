@@ -39,6 +39,4 @@ users.post("/register", async (req, res) => {
   }
 });
 
-users.get("/");
-
 module.exports = users;

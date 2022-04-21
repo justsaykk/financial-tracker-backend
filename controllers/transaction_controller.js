@@ -34,13 +34,13 @@ transactions.post("/new", isAuth, async (req, res) => {
     if (body.account !== currentUser.accountName) {
       body.amount = body.amount * -1;
     }
-    console.log(currentUser.email);
     const newTransaction = await TransactionDetails.create({
       email: currentUser.email,
       date: body.date,
       accountName: body.account,
       amount: body.amount,
       reciepientName: body.recipient,
+      sender: body.sender,
       tDetails: body.transaction,
     });
     res
@@ -59,6 +59,9 @@ transactions.delete("/:id", isAuth, async (req, res) => {
     const removeTransaction = await TransactionDetails.findByIdAndRemove(
       req.params.id
     );
+    res.status(200).send({
+      msg: `transaction ID: ${removeTransaction} has been deleted from database`,
+    });
   } catch (err) {
     res.status(400).send({ error: err.message });
   }

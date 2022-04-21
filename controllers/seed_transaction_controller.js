@@ -9,7 +9,7 @@ const transactionSeeds = [
     accountName: "user01Account",
     amount: 100,
     tCategory: "Payment",
-    recipeintName: "Recipient 1",
+    recipientName: "Recipient 1",
     tDetails: "user01 transaction seed 1",
   },
   {
@@ -18,7 +18,7 @@ const transactionSeeds = [
     accountName: "user01Account",
     amount: -200,
     tCategory: "Payment",
-    recipeintName: "Recipient 2",
+    recipientName: "Recipient 2",
     tDetails: "user01 transaction seed 2",
   },
   {
@@ -27,7 +27,7 @@ const transactionSeeds = [
     accountName: "user02Account",
     amount: 100,
     tCategory: "Payment",
-    recipeintName: "Recipient 1",
+    recipientName: "Recipient 1",
     tDetails: "user02 transaction seed 1",
   },
   {
@@ -36,7 +36,7 @@ const transactionSeeds = [
     accountName: "user02Account",
     amount: -200,
     tCategory: "Payment",
-    recipeintName: "Recipient 2",
+    recipientName: "Recipient 2",
     tDetails: "user02 transaction seed 2",
   },
   {
@@ -45,7 +45,7 @@ const transactionSeeds = [
     accountName: "user03Account",
     amount: 100,
     tCategory: "Payment",
-    recipeintName: "Recipient 1",
+    recipientName: "Recipient 1",
     tDetails: "user03 transaction seed 1",
   },
   {
@@ -54,7 +54,7 @@ const transactionSeeds = [
     accountName: "user02Account",
     amount: -200,
     tCategory: "Payment",
-    recipeintName: "Recipient 2",
+    recipientName: "Recipient 2",
     tDetails: "user03 transaction seed 2",
   },
 ];

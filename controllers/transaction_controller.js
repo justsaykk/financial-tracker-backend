@@ -27,7 +27,7 @@ transactions.get("/", isAuth, async (req, res) => {
   }
 });
 
-transactions.post("/", isAuth, async (req, res) => {
+transactions.post("/new", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   const body = req.body;
   try {

@@ -25,7 +25,6 @@ transactions.get("/", isAuth, async (req, res) => {
     const convertedData = transactionData.map((el) => {
       const newDate = el.date.toISOString().substring(0, 10);
       el.date = newDate;
-      // console.log("el.date is", el.date);
       return { ...el, date: newDate };
     });
     res.status(200).send(convertedData);
@@ -77,21 +76,20 @@ transactions.delete("/:id", isAuth, async (req, res) => {
 
 transactions.put("/:id", isAuth, async (req, res) => {
   const transactionId = { _id: req.params.id };
-  const currentUser = req.session.currentUser;
   const body = req.body;
   const updatedFields = {
     date: new Date(body.date),
     amount: body.amount,
+    sender: body.sender,
     recipientName: body.recipient,
     tDetails: body.transaction,
   };
-  // console.log(typeof transactionId);
   try {
     const updatedTransaction = await TransactionDetails.findByIdAndUpdate(
       transactionId,
       updatedFields
     );
-    res.status(200).send("updated transaction successfully!");
+    res.status(200).send({ msg: "updated transaction successfully!" });
   } catch (error) {
     res.status(404).send("Error with the 'put' route");
   }

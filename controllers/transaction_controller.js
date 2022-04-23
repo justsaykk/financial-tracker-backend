@@ -109,10 +109,10 @@ transactions.put("/:id", isAuth, async (req, res) => {
     );
     res
       .status(200)
-      .send(
+      .send([
         { msg: "updated transaction successfully!" },
-        { transaction: updatedTransaction }
-      );
+        { transaction: updatedTransaction },
+      ]);
   } catch (error) {
     res.status(404).send(`Error with the 'put' route: ${error.message}`);
   }

@@ -39,7 +39,7 @@ transactions.post("/new", isAuth, async (req, res) => {
       date: new Date(body.date),
       accountName: body.account,
       amount: body.amount,
-      reciepientName: body.recipient,
+      recipientName: body.recipient,
       sender: body.sender,
       tCategory: body.category,
       tDetails: body.transaction,

@@ -15,6 +15,7 @@ const isAuth = (req, res, next) => {
   }
 };
 
+// Get route for all transactions
 transactions.get("/", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   try {
@@ -33,6 +34,21 @@ transactions.get("/", isAuth, async (req, res) => {
   }
 });
 
+// Get specific user (by ID) route
+transactions.get("/:id", isAuth, async (req, res) => {
+  const id = req.params.id;
+  try {
+    const transactionData = await TransactionDetails.findById(id);
+    // Changing Date to just return YYYY-MM-DD
+    const newDate = transactionData.date.toISOString().substring(0, 10);
+    transactionData.date = newDate;
+    res.status(200).send(transactionData);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+});
+
+// Create new user route
 transactions.post("/new", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   const body = req.body;
@@ -61,6 +77,7 @@ transactions.post("/new", isAuth, async (req, res) => {
   }
 });
 
+// Delete route
 transactions.delete("/:id", isAuth, async (req, res) => {
   try {
     const removeTransaction = await TransactionDetails.findByIdAndRemove(
@@ -74,6 +91,7 @@ transactions.delete("/:id", isAuth, async (req, res) => {
   }
 });
 
+// Update Route
 transactions.put("/:id", isAuth, async (req, res) => {
   const transactionId = { _id: req.params.id };
   const body = req.body;
@@ -89,7 +107,12 @@ transactions.put("/:id", isAuth, async (req, res) => {
       transactionId,
       updatedFields
     );
-    res.status(200).send({ msg: "updated transaction successfully!" });
+    res
+      .status(200)
+      .send(
+        { msg: "updated transaction successfully!" },
+        { transaction: updatedTransaction }
+      );
   } catch (error) {
     res.status(404).send("Error with the 'put' route");
   }

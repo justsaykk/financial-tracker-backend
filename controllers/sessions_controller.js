@@ -38,10 +38,18 @@ sessions.post("/", async (req, res) => {
   }
 });
 
-// sessions.delete("/", (req, res) => {
-//   req.session.destroy(() => {
-//     // res.redirect("/");
-//   });
-// });
+sessions.delete("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy((error) => {
+      if (error) {
+        res.status(400).send({ msg: "unable to logout" });
+      } else {
+        res.send({ msg: "logout successfully" });
+      }
+    });
+  } else {
+    res.end();
+  }
+});
 
 module.exports = sessions;

@@ -67,4 +67,29 @@ transactions.delete("/:id", isAuth, async (req, res) => {
   }
 });
 
+transactions.put("/:id", isAuth, async (req, res) => {
+  const transactionId = { _id: req.params.id };
+  const currentUser = req.session.currentUser;
+  const body = req.body;
+  const updatedFields = {
+    email: currentUser.email,
+    date: body.date,
+    accountName: body.account,
+    amount: body.amount,
+    reciepientName: body.recipient,
+    sender: body.sender,
+    tDetails: body.transaction,
+  };
+  // console.log(typeof transactionId);
+  try {
+    const updatedTransaction = await TransactionDetails.findByIdAndUpdate(
+      transactionId,
+      updatedFields
+    );
+    res.status(200).send("updated transaction successfully!");
+  } catch (error) {
+    res.status(404).send("Error with the 'put' route");
+  }
+});
+
 module.exports = transactions;

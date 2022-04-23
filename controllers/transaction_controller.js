@@ -38,11 +38,12 @@ transactions.get("/", isAuth, async (req, res) => {
 transactions.get("/:id", isAuth, async (req, res) => {
   const id = req.params.id;
   try {
-    const transactionData = await TransactionDetails.findById(id);
+    const transactionData = await TransactionDetails.findById(id).lean();
     // Changing Date to just return YYYY-MM-DD
     const newDate = transactionData.date.toISOString().substring(0, 10);
     transactionData.date = newDate;
-    res.status(200).send(transactionData);
+    // console.log(transactionData.date);
+    res.status(200).send({ ...transactionData, date: newDate });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

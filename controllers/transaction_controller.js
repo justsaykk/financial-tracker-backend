@@ -25,7 +25,7 @@ transactions.get("/", isAuth, async (req, res) => {
     // Changing Date to just return YYYY-MM-DD
     const convertedData = transactionData.map((el) => {
       const newDate = el.date.toISOString().substring(0, 10);
-      el.date = newDate;
+      // el.date = newDate;
       return { ...el, date: newDate };
     });
     res.status(200).send(convertedData);
@@ -41,8 +41,7 @@ transactions.get("/:id", isAuth, async (req, res) => {
     const transactionData = await TransactionDetails.findById(id).lean();
     // Changing Date to just return YYYY-MM-DD
     const newDate = transactionData.date.toISOString().substring(0, 10);
-    transactionData.date = newDate;
-    // console.log(transactionData.date);
+    // transactionData.date = newDate;
     res.status(200).send({ ...transactionData, date: newDate });
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -115,7 +114,7 @@ transactions.put("/:id", isAuth, async (req, res) => {
         { transaction: updatedTransaction }
       );
   } catch (error) {
-    res.status(404).send("Error with the 'put' route");
+    res.status(404).send(`Error with the 'put' route: ${error.message}`);
   }
 });
 

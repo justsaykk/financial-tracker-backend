@@ -31,12 +31,12 @@ transactions.post("/new", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   const body = req.body;
   try {
-    if (body.account !== currentUser.accountName) {
+    if (body.category !== "Income") {
       body.amount = body.amount * -1;
     }
     const newTransaction = await TransactionDetails.create({
       email: currentUser.email,
-      date: body.date,
+      date: new Date(body.date),
       accountName: body.account,
       amount: body.amount,
       reciepientName: body.recipient,
@@ -72,12 +72,9 @@ transactions.put("/:id", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   const body = req.body;
   const updatedFields = {
-    email: currentUser.email,
-    date: body.date,
-    accountName: body.account,
+    date: new Date(body.date),
     amount: body.amount,
     reciepientName: body.recipient,
-    sender: body.sender,
     tDetails: body.transaction,
   };
   // console.log(typeof transactionId);

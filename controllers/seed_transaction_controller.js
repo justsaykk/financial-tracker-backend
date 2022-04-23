@@ -5,7 +5,7 @@ const seedTransaction = express.Router();
 const transactionSeeds = [
   {
     email: "user01@user.com",
-    date: 15 - 01 - 2022,
+    date: new Date(2022, 01, 15),
     accountName: "user01Account",
     amount: 100,
     tCategory: "Payment",
@@ -14,7 +14,7 @@ const transactionSeeds = [
   },
   {
     email: "user01@user.com",
-    date: 16 - 01 - 2022,
+    date: new Date(2022, 01, 16),
     accountName: "user01Account",
     amount: -200,
     tCategory: "Payment",
@@ -23,7 +23,7 @@ const transactionSeeds = [
   },
   {
     email: "user02@user.com",
-    date: 15 - 01 - 2022,
+    date: new Date(2022, 01, 15),
     accountName: "user02Account",
     amount: 100,
     tCategory: "Payment",
@@ -32,7 +32,7 @@ const transactionSeeds = [
   },
   {
     email: "user02@user.com",
-    date: 16 - 01 - 2022,
+    date: new Date(2022, 01, 16),
     accountName: "user02Account",
     amount: -200,
     tCategory: "Payment",
@@ -41,7 +41,7 @@ const transactionSeeds = [
   },
   {
     email: "user03@user.com",
-    date: 15 - 01 - 2022,
+    date: new Date(2022, 01, 15),
     accountName: "user03Account",
     amount: 100,
     tCategory: "Payment",
@@ -50,7 +50,7 @@ const transactionSeeds = [
   },
   {
     email: "user03@user.com",
-    date: 16 - 01 - 2022,
+    date: new Date(2022, 01, 16),
     accountName: "user02Account",
     amount: -200,
     tCategory: "Payment",

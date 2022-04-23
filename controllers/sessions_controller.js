@@ -15,10 +15,7 @@ const isAuth = (req, res, next) => {
   }
 };
 
-sessions.get("/secret", isAuth, (req, res) => {
-  res.send({ msg: "You are in the secret path" });
-});
-
+// Login Route
 sessions.post("/", async (req, res) => {
   try {
     const foundUser = await userDetailSchema.findOne({ email: req.body.email });
@@ -38,6 +35,7 @@ sessions.post("/", async (req, res) => {
   }
 });
 
+// Logout Route
 sessions.delete("/logout", (req, res) => {
   if (req.session) {
     req.session.destroy((error) => {

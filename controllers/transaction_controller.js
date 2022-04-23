@@ -20,8 +20,15 @@ transactions.get("/", isAuth, async (req, res) => {
   try {
     const transactionData = await TransactionDetails.find({
       email: currentUser.email,
+    }).lean();
+    // Changing Date to just return YYYY-MM-DD
+    const convertedData = transactionData.map((el) => {
+      const newDate = el.date.toISOString().substring(0, 10);
+      el.date = newDate;
+      // console.log("el.date is", el.date);
+      return { ...el, date: newDate };
     });
-    res.status(200).send(transactionData);
+    res.status(200).send(convertedData);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

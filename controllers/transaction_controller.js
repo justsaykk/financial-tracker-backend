@@ -34,7 +34,7 @@ transactions.get("/", isAuth, async (req, res) => {
   }
 });
 
-// Get specific user (by ID) route
+// Get specific transaction (by ID) route
 transactions.get("/:id", isAuth, async (req, res) => {
   const id = req.params.id;
   try {

@@ -114,7 +114,9 @@ transactions.put("/:id", isAuth, async (req, res) => {
         { transaction: updatedTransaction },
       ]);
   } catch (error) {
-    res.status(404).send(`Error with the 'put' route: ${error.message}`);
+    res
+      .status(404)
+      .send({ msg: `Error with the 'put' route: ${error.message}` });
   }
 });
 

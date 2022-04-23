@@ -41,6 +41,7 @@ transactions.post("/new", isAuth, async (req, res) => {
       amount: body.amount,
       reciepientName: body.recipient,
       sender: body.sender,
+      tCategory: body.category,
       tDetails: body.transaction,
     });
     res

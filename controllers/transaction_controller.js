@@ -75,7 +75,7 @@ transactions.put("/:id", isAuth, async (req, res) => {
   const updatedFields = {
     date: new Date(body.date),
     amount: body.amount,
-    reciepientName: body.recipient,
+    recipientName: body.recipient,
     tDetails: body.transaction,
   };
   // console.log(typeof transactionId);

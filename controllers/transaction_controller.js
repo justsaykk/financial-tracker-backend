@@ -22,10 +22,8 @@ transactions.get("/", isAuth, async (req, res) => {
     const transactionData = await TransactionDetails.find({
       email: currentUser.email,
     }).lean();
-    // Changing Date to just return YYYY-MM-DD
     const convertedData = transactionData.map((el) => {
       const newDate = el.date.toISOString().substring(0, 10);
-      // el.date = newDate;
       return { ...el, date: newDate };
     });
     res.status(200).send(convertedData);
@@ -39,9 +37,7 @@ transactions.get("/:id", isAuth, async (req, res) => {
   const id = req.params.id;
   try {
     const transactionData = await TransactionDetails.findById(id).lean();
-    // Changing Date to just return YYYY-MM-DD
     const newDate = transactionData.date.toISOString().substring(0, 10);
-    // transactionData.date = newDate;
     res.status(200).send({ ...transactionData, date: newDate });
   } catch (error) {
     res.status(400).send({ error: error.message });

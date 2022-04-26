@@ -6,23 +6,15 @@ const userDetailSchema = require("../models/user_detail_schema");
 const transactionDetailsSchema = require("../models/transaction_detail_schema");
 const saltRounds = 10;
 
-const isAuth = (req, res, next) => {
-  if (req.session.isLoggedIn) {
-    return next();
-  } else {
-    res.status(401).send({ error: "unauthorized" });
-  }
-};
-
 users.post("/register", async (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, saltRounds);
   try {
     // Finding if email exist in database
     const foundUser = await userDetailSchema.findOne({ email: req.body.email });
     if (!foundUser) {
-      const createdUser = await userDetailSchema.create(req.body);
+      await userDetailSchema.create(req.body);
       // Need to perform a one time initial transaction
-      const initialTransaction = await transactionDetailsSchema.create({
+      await transactionDetailsSchema.create({
         email: req.body.email,
         date: new Date(),
         accountName: req.body.accountName,

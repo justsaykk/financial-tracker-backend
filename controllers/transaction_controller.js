@@ -80,7 +80,7 @@ transactions.delete("/:id", isAuth, async (req, res) => {
       req.params.id
     );
     res.status(200).send({
-      msg: `transaction ID: ${removeTransaction} has been deleted from database`,
+      msg: `${removeTransaction} has been deleted from database`,
     });
   } catch (err) {
     res.status(400).send({ error: err.message });

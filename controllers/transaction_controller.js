@@ -44,7 +44,7 @@ transactions.get("/:id", isAuth, async (req, res) => {
   }
 });
 
-// Create new user route
+// Create new transaction route
 transactions.post("/new", isAuth, async (req, res) => {
   const currentUser = req.session.currentUser;
   const body = req.body;
